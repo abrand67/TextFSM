@@ -1,2 +1,2 @@
 # TextFSM
-Customer TextFSM templates
+Custom TextFSM templates
