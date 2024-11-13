@@ -1,0 +1,96 @@
+##################################################################################
+# Copyright 2019 Allan Brand
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions an
+# limitations under the License.
+##################################################################################
+Value MAC_TABLE (\d+)
+Value MAC_UPDATE_LIST (\d+)
+Value PENDING_OPS (\d+)
+Value IN_PROGRESS_OPS (\d+)
+Value OVERFLOW_OPS (\d+)
+Value ADD_HOSTS (\d+)
+Value ADD_MCAST_HOSTS (\d+)
+Value REMOVE_HOSTS (\d+)
+Value SYNC_MAC_ENTRIES (\d+)
+Value CLEAR_MAC_ENTRIES (\d+)
+Value FULL_FAILURES (\d+)
+Value BUSY_FAILURES (\d+)
+Value PARITY_FAILURES (\d+)
+Value OTHER_FAILURES (\d+)
+Value AGING_TIME_RECONFIGS (\d+)
+Value AGING_TIMER_FIRINGS (\d+)
+Value L2MOD_NUM_READS (\d+)
+Value L2MOD_SPURIOUS_READS (\d+)
+Value L2MOD_INVALID_INDEX_READS (\d+)
+Value L2MOD_TOTAL_EVENTS (\d+)
+Value L2MOD_LEARN_EVENTS (\d+)
+Value L2MOD_RELEARN_EVENTS (\d+)
+Value L2MOD_AGE_EVENTS (\d+)
+Value L2MOD_FLUSH_EVENTS (\d+)
+Value L2MOD_NON_LAG_EVENTS (\d+)
+Value L2MOD_SW_LAG_EVENTS (\d+)
+Value L2MOD_LAG_EVENTS (\d+)
+Value L2MOD_MULTICAST_EVENTS (\d+)
+Value L2MOD_DISCARDED_EVENTS (\d+)
+Value L2MOD_UNEXPECTED_EVENTS (\d+)
+Value COMMAND_QUEUE (\d+)
+Value CMDRINGCONFIG_QUEUE (\d+)
+Value CMDRINGSTATUS_QUEUE (\d+)
+Value MCAST_GROUPS (\d+)
+Value MCAST_PENDING_GROUPS (\d+)
+Value MCAST_WRITE_CMDS (\d+)
+Value MCAST_WRITE_CMDS_RESERVED (\d+)
+Value MCAST_READ_CMDS (\d+)
+Value MCAST_CLEAR_CMDS (\d+)
+Value MCAST_BULK_READ_CMDS (\d+)
+
+Start
+  ^\s*Mac\s+table\s+${MAC_TABLE} -> StrataL2MacStatus
+
+StrataL2MacStatus
+  ^Mac\s+update\s+list\s+${MAC_UPDATE_LIST}
+  ^Pending\s+Ops\s+${PENDING_OPS}
+  ^In-Progress\s+Ops\s+${IN_PROGRESS_OPS}
+  ^Overflow\s+Ops\s+${OVERFLOW_OPS}
+  ^Number\s+of\s+addHosts\s+${ADD_HOSTS}
+  ^Number\s+of\s+addMcastHosts\s+${ADD_MCAST_HOSTS}
+  ^Number\s+of\s+removeHosts\s+${REMOVE_HOSTS}
+  ^Number\s+of\s+syncMacEntries\s+${SYNC_MAC_ENTRIES}
+  ^Number\s+of\s+clearMacEntries\s+${CLEAR_MAC_ENTRIES}
+  ^Number\s+of\s+full\s+failures\s+${FULL_FAILURES}
+  ^Number\s+of\s+busy\s+failures\s+${BUSY_FAILURES}
+  ^Number\s+of\s+parity\s+failures\s+${PARITY_FAILURES}
+  ^Number\s+of\s+other\s+failures\s+${OTHER_FAILURES}
+  ^Number\s+of\s+aging\s+time\s+reconfigs\s+${AGING_TIME_RECONFIGS}
+  ^Number\s+of\s+aging\s+timer\s+firings\s+${AGING_TIMER_FIRINGS}
+  ^L2mod\s+number\s+of\s+reads\s+${L2MOD_NUM_READS}
+  ^L2mod\s+number\s+of\s+spurious\s+reads\s+${L2MOD_SPURIOUS_READS}
+  ^L2mod\s+number\s+of\s+invalid\s+index\s+reads\s+${L2MOD_INVALID_INDEX_READS}
+  ^L2mod\s+total\s+events\s+${L2MOD_TOTAL_EVENTS}
+  ^L2mod\s+learn\s+events\s+${L2MOD_LEARN_EVENTS}\s+L2mod\s+relearn\s+events\s+${L2MOD_RELEARN_EVENTS}
+  ^L2mod\s+age\s+events\s+${L2MOD_AGE_EVENTS}\s+L2mod\s+flush\s+events\s+${L2MOD_FLUSH_EVENTS}
+  ^L2mod\s+non-lag\s+events\s+${L2MOD_NON_LAG_EVENTS}\s+L2mod\s+sw-lag\s+events\s+${L2MOD_SW_LAG_EVENTS}
+  ^L2mod\s+lag\s+events\s+${L2MOD_LAG_EVENTS}\s+L2mod\s+multicast\s+events\s+${L2MOD_MULTICAST_EVENTS}
+  ^L2mod\s+discarded\s+events\s+${L2MOD_DISCARDED_EVENTS}\s+L2mod\s+unexpected\s+events\s+${L2MOD_UNEXPECTED_EVENTS}
+  ^Command\s+queue\s+${COMMAND_QUEUE}
+  ^CmdRingConfig\s+queue\s+${CMDRINGCONFIG_QUEUE}\s+CmdRingStatus\s+queue\s+${CMDRINGSTATUS_QUEUE}
+  ^\s*--+\s*-> StrataL2McastStatus
+
+StrataL2McastStatus
+  ^Number\s+of\s+groups\s+${MCAST_GROUPS}
+  ^Number\s+of\s+pending\s+groups\s+${MCAST_PENDING_GROUPS}
+  ^Number\s+of\s+write-cmds\s+${MCAST_WRITE_CMDS}
+  ^Number\s+of\s+write-cmds\s+for\s+reserved\s+groups\s+${MCAST_WRITE_CMDS_RESERVED}
+  ^Number\s+of\s+read-cmds\s+${MCAST_READ_CMDS}
+  ^Number\s+of\s+clear-cmds\s+${MCAST_CLEAR_CMDS}
+  ^Number\s+of\s+bulk-read-cmds\s+${MCAST_BULK_READ_CMDS} -> Record
